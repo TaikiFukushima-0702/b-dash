@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タスク管理 - b-dash</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    header h1 { font-size: 1.2rem; font-weight: 600; }
+    header .badge {
+      background: #e94560;
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      gap: 0;
+    }
+
+    /* Chat Panel */
+    .chat-panel {
+      width: 420px;
+      min-width: 320px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .chat-header {
+      padding: 14px 18px;
+      background: #16213e;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg {
+      display: flex;
+      gap: 8px;
+      max-width: 100%;
+    }
+
+    .msg.user { flex-direction: row-reverse; }
+
+    .msg-bubble {
+      padding: 10px 14px;
+      border-radius: 16px;
+      max-width: 80%;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .msg.user .msg-bubble {
+      background: #e94560;
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .msg.assistant .msg-bubble {
+      background: #f0f2f5;
+      color: #333;
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .msg.user .msg-avatar { background: #e94560; color: white; }
+    .msg.assistant .msg-avatar { background: #16213e; color: white; }
+
+    .task-saved-badge {
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      color: #155724;
+      margin-top: 4px;
+    }
+
+    .chat-input-area {
+      padding: 14px;
+      border-top: 1px solid #eee;
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input-area textarea {
+      flex: 1;
+      resize: none;
+      border: 1.5px solid #ddd;
+      border-radius: 20px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+      max-height: 120px;
+    }
+
+    .chat-input-area textarea:focus { border-color: #e94560; }
+
+    .send-btn {
+      background: #e94560;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+      align-self: flex-end;
+    }
+
+    .send-btn:hover { background: #c73652; }
+    .send-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* Task Panel */
+    .task-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .task-header {
+      padding: 14px 20px;
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .task-header h2 { font-size: 1rem; font-weight: 600; color: #1a1a2e; }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1.5px solid #ddd;
+      background: white;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+      color: #555;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: #1a1a2e;
+      color: white;
+      border-color: #1a1a2e;
+    }
+
+    .tasks-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      color: #aaa;
+      gap: 8px;
+      padding: 40px;
+    }
+
+    .empty-state .icon { font-size: 2.5rem; }
+    .empty-state p { font-size: 0.9rem; text-align: center; }
+
+    .task-card {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      border-left: 4px solid #ddd;
+      transition: box-shadow 0.2s, transform 0.1s;
+    }
+
+    .task-card:hover {
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+
+    .task-card.priority-high { border-left-color: #e94560; }
+    .task-card.priority-medium { border-left-color: #f39c12; }
+    .task-card.priority-low { border-left-color: #27ae60; }
+    .task-card.status-done { opacity: 0.6; }
+
+    .task-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .task-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      flex: 1;
+    }
+
+    .task-card.status-done .task-title {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .task-actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+    .task-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 3px 5px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+
+    .task-actions button:hover { background: #f0f2f5; }
+
+    .task-desc {
+      font-size: 0.82rem;
+      color: #666;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .task-meta {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .badge-priority-high { background: #fde8ec; color: #c0392b; }
+    .badge-priority-medium { background: #fef3cd; color: #856404; }
+    .badge-priority-low { background: #d4edda; color: #155724; }
+    .badge-status-todo { background: #e9ecef; color: #495057; }
+    .badge-status-in_progress { background: #cce5ff; color: #004085; }
+    .badge-status-done { background: #d4edda; color: #155724; }
+
+    .badge-tag {
+      background: #e8eaf6;
+      color: #3949ab;
+    }
+
+    .task-date {
+      font-size: 0.75rem;
+      color: #999;
+      margin-left: auto;
+    }
+
+    .status-select {
+      font-size: 0.78rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 2px 6px;
+      cursor: pointer;
+      outline: none;
+      background: white;
+    }
+
+    .loading-dots span {
+      display: inline-block;
+      animation: blink 1.4s infinite;
+      font-size: 1.2rem;
+    }
+
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blink {
+      0%, 80%, 100% { opacity: 0; }
+      40% { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .main { flex-direction: column; }
+      .chat-panel { width: 100%; min-width: unset; border-right: none; border-bottom: 1px solid #e0e0e0; height: 50vh; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📋 b-dash タスク管理</h1>
+    <span class="badge">AI powered</span>
+  </header>
+
+  <div class="main">
+    <!-- Chat Panel -->
+    <div class="chat-panel">
+      <div class="chat-header">💬 チャットで課題を報告</div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg assistant">
+          <div class="msg-avatar">AI</div>
+          <div class="msg-bubble">
+            こんにちは！タスク管理アシスタントです。<br>
+            発生した課題やタスクをチャットで教えてください。内容を確認して保存します。<br><br>
+            例：「来週金曜までにレポートを作成する必要がある」
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <textarea id="chatInput" placeholder="課題・タスクを入力してください..." rows="1"
+          onkeydown="handleKeyDown(event)"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="送信">
+          ➤
+        </button>
+      </div>
+    </div>
+
+    <!-- Task Panel -->
+    <div class="task-panel">
+      <div class="task-header">
+        <h2>📌 タスク一覧 <span id="taskCount" style="color:#aaa;font-weight:normal;font-size:0.85rem"></span></h2>
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="setFilter('all', this)">すべて</button>
+          <button class="filter-btn" onclick="setFilter('todo', this)">未着手</button>
+          <button class="filter-btn" onclick="setFilter('in_progress', this)">進行中</button>
+          <button class="filter-btn" onclick="setFilter('done', this)">完了</button>
+        </div>
+      </div>
+      <div class="tasks-container" id="taskList">
+        <div class="empty-state">
+          <div class="icon">📭</div>
+          <p>タスクがありません<br>チャットで課題を報告してください</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allTasks = [];
+    let currentFilter = 'all';
+
+    // Auto-resize textarea
+    const textarea = document.getElementById('chatInput');
+    textarea.addEventListener('input', () => {
+      textarea.style.height = 'auto';
+      textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+    });
+
+    function handleKeyDown(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTasks();
+    }
+
+    async function loadTasks() {
+      const res = await fetch('/api/tasks');
+      allTasks = await res.json();
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const filtered = currentFilter === 'all'
+        ? allTasks
+        : allTasks.filter(t => t.status === currentFilter);
+
+      const countEl = document.getElementById('taskCount');
+      countEl.textContent = `(${filtered.length}件)`;
+
+      const list = document.getElementById('taskList');
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <div class="icon">📭</div>
+            <p>タスクがありません<br>チャットで課題を報告してください</p>
+          </div>`;
+        return;
+      }
+
+      // Sort: high priority first, then by created_at desc
+      const priorityOrder = { high: 0, medium: 1, low: 2 };
+      const sorted = [...filtered].sort((a, b) => {
+        const pd = (priorityOrder[a.priority] || 1) - (priorityOrder[b.priority] || 1);
+        if (pd !== 0) return pd;
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+
+      list.innerHTML = sorted.map(task => {
+        const tags = (task.tags || []).map(t =>
+          `<span class="badge badge-tag">#${t}</span>`
+        ).join('');
+
+        const dateStr = task.due_date
+          ? `<span class="task-date">📅 ${task.due_date}</span>`
+          : '';
+
+        const priorityLabel = { high: '高', medium: '中', low: '低' }[task.priority] || task.priority;
+        const statusLabel = { todo: '未着手', in_progress: '進行中', done: '完了' }[task.status] || task.status;
+
+        return `
+          <div class="task-card priority-${task.priority} status-${task.status}" id="task-${task.id}">
+            <div class="task-top">
+              <div class="task-title">${escHtml(task.title)}</div>
+              <div class="task-actions">
+                <button onclick="deleteTask('${task.id}')" title="削除">🗑️</button>
+              </div>
+            </div>
+            <div class="task-desc">${escHtml(task.description)}</div>
+            <div class="task-meta">
+              <span class="badge badge-priority-${task.priority}">優先度: ${priorityLabel}</span>
+              <select class="status-select" onchange="updateStatus('${task.id}', this.value)">
+                <option value="todo" ${task.status === 'todo' ? 'selected' : ''}>未着手</option>
+                <option value="in_progress" ${task.status === 'in_progress' ? 'selected' : ''}>進行中</option>
+                <option value="done" ${task.status === 'done' ? 'selected' : ''}>完了</option>
+              </select>
+              ${tags}
+              ${dateStr}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function escHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    async function updateStatus(taskId, newStatus) {
+      await fetch(`/api/tasks/${taskId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      await loadTasks();
+    }
+
+    async function deleteTask(taskId) {
+      if (!confirm('このタスクを削除しますか？')) return;
+      await fetch(`/api/tasks/${taskId}`, { method: 'DELETE' });
+      await loadTasks();
+    }
+
+    function appendMessage(role, text, savedTasks) {
+      const container = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.className = `msg ${role}`;
+      const avatarText = role === 'user' ? '自' : 'AI';
+      let savedHtml = '';
+      if (savedTasks && savedTasks.length > 0) {
+        savedHtml = savedTasks.map(t =>
+          `<div class="task-saved-badge">✅ タスク保存: <strong>${escHtml(t.title)}</strong></div>`
+        ).join('');
+      }
+      div.innerHTML = `
+        <div class="msg-avatar">${avatarText}</div>
+        <div>
+          <div class="msg-bubble">${escHtml(text).replace(/\n/g, '<br>')}</div>
+          ${savedHtml}
+        </div>`;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showLoading() {
+      const container = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.className = 'msg assistant';
+      div.id = 'loadingMsg';
+      div.innerHTML = `
+        <div class="msg-avatar">AI</div>
+        <div class="msg-bubble">
+          <span class="loading-dots"><span>●</span><span>●</span><span>●</span></span>
+        </div>`;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function hideLoading() {
+      const el = document.getElementById('loadingMsg');
+      if (el) el.remove();
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const sendBtn = document.getElementById('sendBtn');
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage('user', message);
+      input.value = '';
+      input.style.height = 'auto';
+      sendBtn.disabled = true;
+      showLoading();
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message }),
+        });
+        const data = await res.json();
+        hideLoading();
+        appendMessage('assistant', data.reply, data.saved_tasks);
+        if (data.saved_tasks && data.saved_tasks.length > 0) {
+          await loadTasks();
+        }
+      } catch (err) {
+        hideLoading();
+        appendMessage('assistant', 'エラーが発生しました。もう一度お試しください。');
+      } finally {
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    }
+
+    // Initial load
+    loadTasks();
+  </script>
+</body>
+</html>
