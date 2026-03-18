@@ -322,6 +322,46 @@
       margin-left: auto;
     }
 
+    .task-url-row {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .task-url-link {
+      font-size: 0.78rem;
+      color: #3949ab;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .task-url-link:hover { text-decoration: underline; }
+
+    .task-url-input {
+      flex: 1;
+      font-size: 0.78rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 3px 8px;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .task-url-input:focus { border-color: #3949ab; }
+
+    .url-edit-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.78rem;
+      color: #888;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .url-edit-btn:hover { background: #f0f2f5; color: #333; }
+
     .status-select {
       font-size: 0.78rem;
       border: 1px solid #ddd;
@@ -470,6 +510,15 @@
         const priorityLabel = { high: '高', medium: '中', low: '低' }[task.priority] || task.priority;
         const statusLabel = { todo: '未着手', in_progress: '進行中', done: '完了' }[task.status] || task.status;
 
+        const urlHtml = task.url
+          ? `<div class="task-url-row">
+               🔗 <a class="task-url-link" href="${escHtml(task.url)}" target="_blank" rel="noopener">${escHtml(task.url)}</a>
+               <button class="url-edit-btn" onclick="showUrlEdit('${task.id}')" title="URLを編集">✏️</button>
+             </div>`
+          : `<div class="task-url-row">
+               <button class="url-edit-btn" onclick="showUrlEdit('${task.id}')" title="URLを追加">🔗 URLを追加</button>
+             </div>`;
+
         return `
           <div class="task-card priority-${task.priority} status-${task.status}" id="task-${task.id}">
             <div class="task-top">
@@ -489,6 +538,14 @@
               ${tags}
               ${dateStr}
             </div>
+            ${urlHtml}
+            <div id="url-edit-${task.id}" style="display:none;" class="task-url-row">
+              <input class="task-url-input" type="url" placeholder="https://..." value="${escHtml(task.url || '')}"
+                onkeydown="if(event.key==='Enter') saveUrl('${task.id}', this.value)"
+                id="url-input-${task.id}" />
+              <button class="url-edit-btn" onclick="saveUrl('${task.id}', document.getElementById('url-input-${task.id}').value)">保存</button>
+              <button class="url-edit-btn" onclick="document.getElementById('url-edit-${task.id}').style.display='none'">✕</button>
+            </div>
           </div>`;
       }).join('');
     }
@@ -506,6 +563,23 @@
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
+      });
+      await loadTasks();
+    }
+
+    function showUrlEdit(taskId) {
+      const el = document.getElementById(`url-edit-${taskId}`);
+      el.style.display = el.style.display === 'none' ? 'flex' : 'none';
+      if (el.style.display === 'flex') {
+        document.getElementById(`url-input-${taskId}`).focus();
+      }
+    }
+
+    async function saveUrl(taskId, url) {
+      await fetch(`/api/tasks/${taskId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: url || null }),
       });
       await loadTasks();
     }

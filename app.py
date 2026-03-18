@@ -41,6 +41,7 @@ class TaskUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
     due_date: Optional[str] = None
+    url: Optional[str] = None
 
 
 # Claude client
@@ -92,6 +93,10 @@ async def chat(body: ChatMessage):
                         "items": {"type": "string"},
                         "description": "タスクに関連するタグ・カテゴリ",
                     },
+                    "url": {
+                        "type": "string",
+                        "description": "タスクに関連するURL。記載がない場合は空文字",
+                    },
                 },
                 "required": ["title", "description", "priority"],
             },
@@ -125,6 +130,7 @@ async def chat(body: ChatMessage):
                     "status": "todo",
                     "due_date": task_data.get("due_date", ""),
                     "tags": task_data.get("tags", []),
+                    "url": task_data.get("url", None),
                     "created_at": datetime.now().isoformat(),
                 }
                 tasks.append(new_task)
@@ -188,6 +194,8 @@ async def update_task(task_id: str, update: TaskUpdate):
                 task["description"] = update.description
             if update.due_date is not None:
                 task["due_date"] = update.due_date
+            if update.url is not None:
+                task["url"] = update.url
             task["updated_at"] = datetime.now().isoformat()
             save_tasks(tasks)
             return task
