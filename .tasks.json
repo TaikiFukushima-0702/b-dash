@@ -51,6 +51,19 @@
       "urls": [],
       "createdAt": "2026-03-19T00:00:00.000Z",
       "updatedAt": "2026-03-19T00:00:00.000Z"
+    },
+    {
+      "id": "task-005",
+      "project": "小田急不動産",
+      "title": "IF定義書の確認",
+      "description": "小田急不動産のIF定義書（インターフェース定義書）の内容を確認する。",
+      "status": "todo",
+      "priority": "medium",
+      "dueDate": null,
+      "tags": ["確認", "IF定義書"],
+      "urls": [],
+      "createdAt": "2026-03-19T00:00:00.000Z",
+      "updatedAt": "2026-03-19T00:00:00.000Z"
     }
   ]
 }
