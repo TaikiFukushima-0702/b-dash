@@ -38,6 +38,19 @@
       "urls": [],
       "createdAt": "2026-03-19T00:00:00.000Z",
       "updatedAt": "2026-03-19T00:00:00.000Z"
+    },
+    {
+      "id": "task-004",
+      "project": "東京ソワール",
+      "title": "夏物訴求施策のレクチャー",
+      "description": "東京ソワールの夏物訴求施策についてレクチャーを行う。",
+      "status": "todo",
+      "priority": "medium",
+      "dueDate": null,
+      "tags": ["レクチャー", "施策"],
+      "urls": [],
+      "createdAt": "2026-03-19T00:00:00.000Z",
+      "updatedAt": "2026-03-19T00:00:00.000Z"
     }
   ]
 }
