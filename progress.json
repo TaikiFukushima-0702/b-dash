@@ -1,0 +1,99 @@
+{
+  "partner": {
+    "name": "ビットン",
+    "stage": 1,
+    "evolution": "ビットン",
+    "ascii": "(・ω・)",
+    "stages": {
+      "1": { "name": "ビットン",     "ascii": "(・ω・)",     "level_range": "Lv.1-5",   "description": "生まれたばかりのデジタル生物。好奇心旺盛！" },
+      "2": { "name": "バイトル",     "ascii": "(◎▽◎)ノ",   "level_range": "Lv.6-12",  "description": "知識を吸収してちょっと成長。得意技:ビット演算！" },
+      "3": { "name": "メガビット",   "ascii": "\\(★∀★)/",  "level_range": "Lv.13-20", "description": "アルゴリズムを理解し始めた中堅パートナー" },
+      "4": { "name": "ギガロン",     "ascii": "【◆▲◆】",    "level_range": "Lv.21-30", "description": "堂々たる風格。模擬試験も余裕の実力者" },
+      "5": { "name": "テラマスター", "ascii": "《★皇★》∞",  "level_range": "Lv.31+",   "description": "最終進化形態。基本情報の全知識を極めし者" }
+    }
+  },
+  "xp": {
+    "total": 0,
+    "level": 1,
+    "xp_to_next_level": 50,
+    "history": []
+  },
+  "streak": {
+    "current": 0,
+    "max": 0,
+    "last_study_date": null
+  },
+  "stamps": {
+    "chapters": {
+      "Ch.0-2":  { "done": false, "date": null, "stamp": "🖥️" },
+      "Ch.3-4":  { "done": false, "date": null, "stamp": "⚡" },
+      "Ch.5-6":  { "done": false, "date": null, "stamp": "🧠" },
+      "Ch.7-8":  { "done": false, "date": null, "stamp": "💾" },
+      "Ch.9-10": { "done": false, "date": null, "stamp": "🐧" },
+      "Ch.11":   { "done": false, "date": null, "stamp": "🗄️" },
+      "Ch.12":   { "done": false, "date": null, "stamp": "🌐" },
+      "Ch.13":   { "done": false, "date": null, "stamp": "🔒" },
+      "Ch.14":   { "done": false, "date": null, "stamp": "🔧" },
+      "Ch.15-17":{ "done": false, "date": null, "stamp": "📊" },
+      "Ch.18-19":{ "done": false, "date": null, "stamp": "🏢" },
+      "Ch.20":   { "done": false, "date": null, "stamp": "💰" }
+    },
+    "phases": {
+      "Phase1": { "done": false, "date": null, "stamp": "🏅" },
+      "Phase2": { "done": false, "date": null, "stamp": "🏆" },
+      "Phase3": { "done": false, "date": null, "stamp": "👑" }
+    },
+    "weekly_tests": {
+      "Week1": { "done": false, "date": null, "score": null, "stamp": "📝" },
+      "Week2": { "done": false, "date": null, "score": null, "stamp": "📝" },
+      "Week3": { "done": false, "date": null, "score": null, "stamp": "📝" },
+      "Week4": { "done": false, "date": null, "score": null, "stamp": "📝" }
+    }
+  },
+  "badges": {
+    "first_step":       { "name": "はじめの一歩",       "condition": "初めての学習セッション完了",       "earned": false, "date": null, "icon": "👣" },
+    "week_warrior":     { "name": "一週間の戦士",       "condition": "7日連続学習達成",                 "earned": false, "date": null, "icon": "⚔️" },
+    "two_week_master":  { "name": "二週間マスター",     "condition": "14日連続学習達成",                "earned": false, "date": null, "icon": "🛡️" },
+    "month_legend":     { "name": "一ヶ月の伝説",       "condition": "30日連続学習達成",                "earned": false, "date": null, "icon": "🏰" },
+    "perfect_quiz":     { "name": "パーフェクト！",     "condition": "確認テストで満点",               "earned": false, "date": null, "icon": "💯" },
+    "algo_master":      { "name": "アルゴリズムの達人", "condition": "Phase2（科目B対策）完了",          "earned": false, "date": null, "icon": "🧮" },
+    "half_complete":    { "name": "折り返し地点",       "condition": "全チャプターの半分完了",           "earned": false, "date": null, "icon": "🏃" },
+    "all_chapters":     { "name": "全章制覇",           "condition": "全チャプターのスタンプ獲得",       "earned": false, "date": null, "icon": "📚" },
+    "mock_exam_pass":   { "name": "模擬合格",           "condition": "模擬試験で600点以上相当",          "earned": false, "date": null, "icon": "🎓" },
+    "evolution_first":  { "name": "初進化！",           "condition": "パートナーが初めて進化",           "earned": false, "date": null, "icon": "✨" },
+    "evolution_final":  { "name": "最終進化",           "condition": "パートナーがテラマスターに進化",   "earned": false, "date": null, "icon": "🌟" },
+    "xp_1000":          { "name": "1000XP突破",         "condition": "累計1000XP獲得",                  "earned": false, "date": null, "icon": "🔥" },
+    "xp_3000":          { "name": "3000XP突破",         "condition": "累計3000XP獲得",                  "earned": false, "date": null, "icon": "💎" }
+  },
+  "quiz_history": [],
+  "weekly_scores": {},
+  "mock_exam_scores": [],
+  "stats": {
+    "total_sessions": 0,
+    "total_questions_answered": 0,
+    "total_correct": 0,
+    "chapters_completed": 0,
+    "started_date": null
+  },
+  "xp_rules": {
+    "_comment": "XP獲得ルール一覧",
+    "chapter_read": 30,
+    "quiz_correct": 5,
+    "quiz_wrong": 1,
+    "weekly_test_base": 50,
+    "weekly_test_per_correct": 5,
+    "mock_exam_base": 100,
+    "mock_exam_per_correct": 3,
+    "daily_streak_bonus": 5,
+    "phase_completion": 200,
+    "perfect_score_bonus": 100
+  },
+  "level_thresholds": {
+    "_comment": "各レベルに必要な累計XP。level = floor(sqrt(totalXP / 5)) + 1",
+    "formula": "level = floor(sqrt(totalXP / 5)) + 1",
+    "examples": {
+      "Lv.1": 0, "Lv.2": 45, "Lv.5": 320, "Lv.10": 2045,
+      "Lv.15": 4900, "Lv.20": 9025, "Lv.25": 14400, "Lv.30": 21025, "Lv.35": 28900
+    }
+  }
+}
