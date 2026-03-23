@@ -207,3 +207,38 @@ export async function deleteTaskInNotion(taskId: string): Promise<void> {
     await client.blocks.delete({ block_id: pageId });
   }
 }
+
+export interface SyncResult {
+  created: number;
+  updated: number;
+  skipped: number;
+}
+
+export async function syncTasksToNotion(localTasks: Task[]): Promise<SyncResult> {
+  const result: SyncResult = { created: 0, updated: 0, skipped: 0 };
+
+  // Load existing Notion tasks to compare
+  const notionTasks = await loadTasksFromNotion();
+  const notionTaskMap = new Map<string, Task>();
+  for (const t of notionTasks) {
+    notionTaskMap.set(t.id, t);
+  }
+
+  for (const local of localTasks) {
+    const existing = notionTaskMap.get(local.id);
+
+    if (!existing) {
+      // Task doesn't exist in Notion, create it
+      await createTaskInNotion(local);
+      result.created++;
+    } else if (local.updatedAt > existing.updatedAt) {
+      // Local is newer, update Notion
+      await updateTaskInNotion(local);
+      result.updated++;
+    } else {
+      result.skipped++;
+    }
+  }
+
+  return result;
+}

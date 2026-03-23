@@ -7,7 +7,9 @@ import {
   createTaskInNotion,
   updateTaskInNotion,
   deleteTaskInNotion,
+  syncTasksToNotion,
 } from "./notion.js";
+import type { SyncResult } from "./notion.js";
 
 export function getTaskFilePath(): string {
   return join(process.cwd(), ".tasks.json");
@@ -64,4 +66,9 @@ export async function removeTask(taskId: string): Promise<void> {
   if (isNotionConfigured()) {
     await deleteTaskInNotion(taskId);
   }
+}
+
+export async function syncLocalToNotion(): Promise<SyncResult> {
+  const localTasks = await loadTasksFromFile();
+  return syncTasksToNotion(localTasks);
 }
