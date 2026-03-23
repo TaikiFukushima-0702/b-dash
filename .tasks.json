@@ -31,7 +31,7 @@
       "project": "ゼビオ",
       "title": "パケットについての質問の回答",
       "description": "ゼビオからのパケットに関する質問に回答する。",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "dueDate": null,
       "tags": ["質問対応", "パケット"],
