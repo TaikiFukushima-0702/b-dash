@@ -13,12 +13,14 @@
     }
   },
   "xp": {
-    "total": 35,
-    "level": 1,
-    "xp_to_next_level": 10,
+    "total": 73,
+    "level": 4,
+    "xp_to_next_level": 7,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
-      { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 }
+      { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
+      { "date": "2026-03-23", "action": "クイズ正解 7問", "xp": 35 },
+      { "date": "2026-03-23", "action": "クイズ不正解 3問 (参加XP)", "xp": 3 }
     ]
   },
   "streak": {
@@ -68,13 +70,15 @@
     "xp_1000":          { "name": "1000XP突破",         "condition": "累計1000XP獲得",                  "earned": false, "date": null, "icon": "🔥" },
     "xp_3000":          { "name": "3000XP突破",         "condition": "累計3000XP獲得",                  "earned": false, "date": null, "icon": "💎" }
   },
-  "quiz_history": [],
+  "quiz_history": [
+    { "date": "2026-03-23", "chapter": "Ch.0-2", "score": 7, "total": 10, "wrong": ["Q5 OR演算", "Q6 負の数の表現", "Q7 8ビット最大値"] }
+  ],
   "weekly_scores": {},
   "mock_exam_scores": [],
   "stats": {
     "total_sessions": 1,
-    "total_questions_answered": 0,
-    "total_correct": 0,
+    "total_questions_answered": 10,
+    "total_correct": 7,
     "chapters_completed": 1,
     "started_date": "2026-03-23"
   },
