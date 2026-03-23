@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { loadTasks, saveTasks } from "../store.js";
+import { loadTasks, saveTasks, removeTask } from "../store.js";
 
 export function registerTaskDelete(server: McpServer): void {
   server.tool(
@@ -25,6 +25,7 @@ export function registerTaskDelete(server: McpServer): void {
 
         const [deleted] = tasks.splice(index, 1);
         await saveTasks(tasks);
+        await removeTask(deleted.id);
         return {
           content: [
             {

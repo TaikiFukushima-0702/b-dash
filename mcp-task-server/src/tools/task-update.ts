@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { loadTasks, saveTasks } from "../store.js";
+import { loadTasks, saveTasks, saveUpdatedTask } from "../store.js";
 
 export function registerTaskUpdate(server: McpServer): void {
   server.tool(
@@ -53,6 +53,7 @@ export function registerTaskUpdate(server: McpServer): void {
         task.updatedAt = new Date().toISOString();
 
         await saveTasks(tasks);
+        await saveUpdatedTask(task);
         return {
           content: [
             { type: "text", text: JSON.stringify(task, null, 2) },

@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { Task } from "../types.js";
-import { loadTasks, saveTasks } from "../store.js";
+import { loadTasks, saveTasks, saveNewTask } from "../store.js";
 
 export function registerTaskCreate(server: McpServer): void {
   server.tool(
@@ -48,6 +48,7 @@ export function registerTaskCreate(server: McpServer): void {
         };
         tasks.push(task);
         await saveTasks(tasks);
+        await saveNewTask(task);
         return {
           content: [
             { type: "text", text: JSON.stringify(task, null, 2) },
