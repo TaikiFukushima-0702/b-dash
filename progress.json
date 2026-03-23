@@ -13,15 +13,17 @@
     }
   },
   "xp": {
-    "total": 0,
+    "total": 5,
     "level": 1,
-    "xp_to_next_level": 50,
-    "history": []
+    "xp_to_next_level": 45,
+    "history": [
+      { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 }
+    ]
   },
   "streak": {
-    "current": 0,
-    "max": 0,
-    "last_study_date": null
+    "current": 1,
+    "max": 1,
+    "last_study_date": "2026-03-23"
   },
   "stamps": {
     "chapters": {
@@ -51,7 +53,7 @@
     }
   },
   "badges": {
-    "first_step":       { "name": "はじめの一歩",       "condition": "初めての学習セッション完了",       "earned": false, "date": null, "icon": "👣" },
+    "first_step":       { "name": "はじめの一歩",       "condition": "初めての学習セッション完了",       "earned": true, "date": "2026-03-23", "icon": "👣" },
     "week_warrior":     { "name": "一週間の戦士",       "condition": "7日連続学習達成",                 "earned": false, "date": null, "icon": "⚔️" },
     "two_week_master":  { "name": "二週間マスター",     "condition": "14日連続学習達成",                "earned": false, "date": null, "icon": "🛡️" },
     "month_legend":     { "name": "一ヶ月の伝説",       "condition": "30日連続学習達成",                "earned": false, "date": null, "icon": "🏰" },
@@ -69,11 +71,11 @@
   "weekly_scores": {},
   "mock_exam_scores": [],
   "stats": {
-    "total_sessions": 0,
+    "total_sessions": 1,
     "total_questions_answered": 0,
     "total_correct": 0,
     "chapters_completed": 0,
-    "started_date": null
+    "started_date": "2026-03-23"
   },
   "xp_rules": {
     "_comment": "XP獲得ルール一覧",
