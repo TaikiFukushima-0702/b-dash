@@ -73,6 +73,26 @@
   "quiz_history": [
     { "date": "2026-03-23", "chapter": "Ch.0-2", "score": 7, "total": 10, "wrong": ["Q5 OR演算", "Q6 負の数の表現", "Q7 8ビット最大値"] }
   ],
+  "subject_stats": {
+    "_comment": "分野別の正答数・出題数・ミス履歴。クイズ・テスト後に更新する",
+    "2進数・n進数":         { "correct": 3, "total": 4, "missed": [] },
+    "論理演算":             { "correct": 0, "total": 1, "missed": ["OR演算の結果 (1101 OR 1010 = 1111)"] },
+    "負の数・補数表現":     { "correct": 0, "total": 1, "missed": ["2の補数（負の数の表現）"] },
+    "ビット・バイト基礎":   { "correct": 1, "total": 1, "missed": [] },
+    "8ビット表現範囲":      { "correct": 0, "total": 1, "missed": ["符号なし8ビット最大値は255"] },
+    "コンピュータ五大装置": { "correct": 1, "total": 1, "missed": [] },
+    "シフト演算":           { "correct": 1, "total": 1, "missed": [] },
+    "CPU・メモリ":          { "correct": 0, "total": 0, "missed": [] },
+    "OS・ファイル管理":     { "correct": 0, "total": 0, "missed": [] },
+    "データベース・SQL":    { "correct": 0, "total": 0, "missed": [] },
+    "ネットワーク":         { "correct": 0, "total": 0, "missed": [] },
+    "セキュリティ":         { "correct": 0, "total": 0, "missed": [] },
+    "アルゴリズム":         { "correct": 0, "total": 0, "missed": [] },
+    "擬似言語":             { "correct": 0, "total": 0, "missed": [] },
+    "システム開発":         { "correct": 0, "total": 0, "missed": [] },
+    "マネジメント":         { "correct": 0, "total": 0, "missed": [] },
+    "ストラテジ・経営":     { "correct": 0, "total": 0, "missed": [] }
+  },
   "weekly_scores": {},
   "mock_exam_scores": [],
   "stats": {
