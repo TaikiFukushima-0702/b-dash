@@ -64,6 +64,19 @@
       "urls": [],
       "createdAt": "2026-03-19T00:00:00.000Z",
       "updatedAt": "2026-03-19T00:00:00.000Z"
+    },
+    {
+      "id": "task-006",
+      "project": "CCJ",
+      "title": "日程調整",
+      "description": "CCJの日程調整を行う。",
+      "status": "todo",
+      "priority": "medium",
+      "dueDate": null,
+      "tags": ["日程調整"],
+      "urls": [],
+      "createdAt": "2026-03-23T00:00:00.000Z",
+      "updatedAt": "2026-03-23T00:00:00.000Z"
     }
   ]
 }
