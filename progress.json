@@ -13,11 +13,12 @@
     }
   },
   "xp": {
-    "total": 5,
+    "total": 35,
     "level": 1,
-    "xp_to_next_level": 45,
+    "xp_to_next_level": 10,
     "history": [
-      { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 }
+      { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
+      { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 }
     ]
   },
   "streak": {
@@ -27,7 +28,7 @@
   },
   "stamps": {
     "chapters": {
-      "Ch.0-2":  { "done": false, "date": null, "stamp": "🖥️" },
+      "Ch.0-2":  { "done": true, "date": "2026-03-23", "stamp": "🖥️" },
       "Ch.3-4":  { "done": false, "date": null, "stamp": "⚡" },
       "Ch.5-6":  { "done": false, "date": null, "stamp": "🧠" },
       "Ch.7-8":  { "done": false, "date": null, "stamp": "💾" },
@@ -74,7 +75,7 @@
     "total_sessions": 1,
     "total_questions_answered": 0,
     "total_correct": 0,
-    "chapters_completed": 0,
+    "chapters_completed": 1,
     "started_date": "2026-03-23"
   },
   "xp_rules": {
