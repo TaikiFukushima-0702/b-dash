@@ -13,25 +13,27 @@
     }
   },
   "xp": {
-    "total": 73,
-    "level": 4,
-    "xp_to_next_level": 7,
+    "total": 113,
+    "level": 5,
+    "xp_to_next_level": 12,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
       { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
       { "date": "2026-03-23", "action": "クイズ正解 7問", "xp": 35 },
-      { "date": "2026-03-23", "action": "クイズ不正解 3問 (参加XP)", "xp": 3 }
+      { "date": "2026-03-23", "action": "クイズ不正解 3問 (参加XP)", "xp": 3 },
+      { "date": "2026-03-24", "action": "連続学習ボーナス (2日目)", "xp": 10 },
+      { "date": "2026-03-24", "action": "Ch.3-4 読了", "xp": 30 }
     ]
   },
   "streak": {
-    "current": 1,
-    "max": 1,
-    "last_study_date": "2026-03-23"
+    "current": 2,
+    "max": 2,
+    "last_study_date": "2026-03-24"
   },
   "stamps": {
     "chapters": {
       "Ch.0-2":  { "done": true, "date": "2026-03-23", "stamp": "🖥️" },
-      "Ch.3-4":  { "done": false, "date": null, "stamp": "⚡" },
+      "Ch.3-4":  { "done": true, "date": "2026-03-24", "stamp": "⚡" },
       "Ch.5-6":  { "done": false, "date": null, "stamp": "🧠" },
       "Ch.7-8":  { "done": false, "date": null, "stamp": "💾" },
       "Ch.9-10": { "done": false, "date": null, "stamp": "🐧" },
@@ -96,10 +98,10 @@
   "weekly_scores": {},
   "mock_exam_scores": [],
   "stats": {
-    "total_sessions": 1,
+    "total_sessions": 2,
     "total_questions_answered": 10,
     "total_correct": 7,
-    "chapters_completed": 1,
+    "chapters_completed": 2,
     "started_date": "2026-03-23"
   },
   "xp_rules": {
