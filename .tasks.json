@@ -109,13 +109,26 @@
       "project": "小田急不動産",
       "title": "WBSの作成",
       "description": "小田急不動産のWBS（Work Breakdown Structure）を作成する。",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "dueDate": null,
       "tags": ["WBS", "計画"],
       "urls": [],
       "createdAt": "2026-03-23T00:00:00.000Z",
-      "updatedAt": "2026-03-23T00:00:00.000Z"
+      "updatedAt": "2026-03-24T00:00:00.000Z"
+    },
+    {
+      "id": "task-010",
+      "project": "小田急不動産",
+      "title": "WBSの修正",
+      "description": "小田急不動産のWBS（Work Breakdown Structure）を修正する。",
+      "status": "todo",
+      "priority": "medium",
+      "dueDate": null,
+      "tags": ["WBS", "修正"],
+      "urls": [],
+      "createdAt": "2026-03-24T00:00:00.000Z",
+      "updatedAt": "2026-03-24T00:00:00.000Z"
     }
   ]
 }
