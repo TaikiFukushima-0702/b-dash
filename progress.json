@@ -1,9 +1,9 @@
 {
   "partner": {
-    "name": "ビットン",
-    "stage": 1,
-    "evolution": "ビットン",
-    "ascii": "(・ω・)",
+    "name": "バイトル",
+    "stage": 2,
+    "evolution": "バイトル",
+    "ascii": "(◎▽◎)ノ",
     "stages": {
       "1": { "name": "ビットン",     "ascii": "(・ω・)",     "level_range": "Lv.1-5",   "description": "生まれたばかりのデジタル生物。好奇心旺盛！" },
       "2": { "name": "バイトル",     "ascii": "(◎▽◎)ノ",   "level_range": "Lv.6-12",  "description": "知識を吸収してちょっと成長。得意技:ビット演算！" },
@@ -13,16 +13,18 @@
     }
   },
   "xp": {
-    "total": 113,
-    "level": 5,
-    "xp_to_next_level": 12,
+    "total": 159,
+    "level": 6,
+    "xp_to_next_level": 21,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
       { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
       { "date": "2026-03-23", "action": "クイズ正解 7問", "xp": 35 },
       { "date": "2026-03-23", "action": "クイズ不正解 3問 (参加XP)", "xp": 3 },
       { "date": "2026-03-24", "action": "連続学習ボーナス (2日目)", "xp": 10 },
-      { "date": "2026-03-24", "action": "Ch.3-4 読了", "xp": 30 }
+      { "date": "2026-03-24", "action": "Ch.3-4 読了", "xp": 30 },
+      { "date": "2026-03-24", "action": "Ch.3-4 クイズ正解 9問", "xp": 45 },
+      { "date": "2026-03-24", "action": "Ch.3-4 クイズ不正解 1問 (参加XP)", "xp": 1 }
     ]
   },
   "streak": {
@@ -67,23 +69,27 @@
     "half_complete":    { "name": "折り返し地点",       "condition": "全チャプターの半分完了",           "earned": false, "date": null, "icon": "🏃" },
     "all_chapters":     { "name": "全章制覇",           "condition": "全チャプターのスタンプ獲得",       "earned": false, "date": null, "icon": "📚" },
     "mock_exam_pass":   { "name": "模擬合格",           "condition": "模擬試験で600点以上相当",          "earned": false, "date": null, "icon": "🎓" },
-    "evolution_first":  { "name": "初進化！",           "condition": "パートナーが初めて進化",           "earned": false, "date": null, "icon": "✨" },
+    "evolution_first":  { "name": "初進化！",           "condition": "パートナーが初めて進化",           "earned": true, "date": "2026-03-24", "icon": "✨" },
     "evolution_final":  { "name": "最終進化",           "condition": "パートナーがテラマスターに進化",   "earned": false, "date": null, "icon": "🌟" },
     "xp_1000":          { "name": "1000XP突破",         "condition": "累計1000XP獲得",                  "earned": false, "date": null, "icon": "🔥" },
     "xp_3000":          { "name": "3000XP突破",         "condition": "累計3000XP獲得",                  "earned": false, "date": null, "icon": "💎" }
   },
   "quiz_history": [
-    { "date": "2026-03-23", "chapter": "Ch.0-2", "score": 7, "total": 10, "wrong": ["Q5 OR演算", "Q6 負の数の表現", "Q7 8ビット最大値"] }
+    { "date": "2026-03-23", "chapter": "Ch.0-2", "score": 7, "total": 10, "wrong": ["Q5 OR演算", "Q6 負の数の表現", "Q7 8ビット最大値"] },
+    { "date": "2026-03-24", "chapter": "Ch.3-4", "score": 9, "total": 10, "wrong": ["Q10 音声デジタル化の手順"] }
   ],
   "subject_stats": {
     "_comment": "分野別の正答数・出題数・ミス履歴。クイズ・テスト後に更新する",
     "2進数・n進数":         { "correct": 3, "total": 4, "missed": [] },
-    "論理演算":             { "correct": 0, "total": 1, "missed": ["OR演算の結果 (1101 OR 1010 = 1111)"] },
+    "論理演算":             { "correct": 5, "total": 7, "missed": ["OR演算の結果 (1101 OR 1010 = 1111)"] },
     "負の数・補数表現":     { "correct": 0, "total": 1, "missed": ["2の補数（負の数の表現）"] },
     "ビット・バイト基礎":   { "correct": 1, "total": 1, "missed": [] },
     "8ビット表現範囲":      { "correct": 0, "total": 1, "missed": ["符号なし8ビット最大値は255"] },
     "コンピュータ五大装置": { "correct": 1, "total": 1, "missed": [] },
     "シフト演算":           { "correct": 1, "total": 1, "missed": [] },
+    "浮動小数点・データ表現": { "correct": 1, "total": 1, "missed": [] },
+    "文字コード":           { "correct": 1, "total": 1, "missed": [] },
+    "マルチメディア(画像・音声)": { "correct": 1, "total": 2, "missed": ["音声デジタル化の手順（標本化→量子化→符号化）"] },
     "CPU・メモリ":          { "correct": 0, "total": 0, "missed": [] },
     "OS・ファイル管理":     { "correct": 0, "total": 0, "missed": [] },
     "データベース・SQL":    { "correct": 0, "total": 0, "missed": [] },
@@ -99,8 +105,8 @@
   "mock_exam_scores": [],
   "stats": {
     "total_sessions": 2,
-    "total_questions_answered": 10,
-    "total_correct": 7,
+    "total_questions_answered": 20,
+    "total_correct": 16,
     "chapters_completed": 2,
     "started_date": "2026-03-23"
   },
