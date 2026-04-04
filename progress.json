@@ -13,9 +13,9 @@
     }
   },
   "xp": {
-    "total": 390,
-    "level": 9,
-    "xp_to_next_level": 15,
+    "total": 436,
+    "level": 10,
+    "xp_to_next_level": 49,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
       { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
@@ -32,7 +32,9 @@
       { "date": "2026-03-26", "action": "連続学習ボーナス (4日目)", "xp": 20 },
       { "date": "2026-03-26", "action": "Week1 確認テスト完了 (基本)", "xp": 50 },
       { "date": "2026-03-26", "action": "Week1 確認テスト正解 13問", "xp": 65 },
-      { "date": "2026-04-04", "action": "連続学習ボーナス (1日目・リスタート)", "xp": 5 }
+      { "date": "2026-04-04", "action": "連続学習ボーナス (1日目・リスタート)", "xp": 5 },
+      { "date": "2026-04-04", "action": "苦手復習クイズ正解 9問", "xp": 45 },
+      { "date": "2026-04-04", "action": "苦手復習クイズ不正解 1問 (参加XP)", "xp": 1 }
     ]
   },
   "streak": {
@@ -86,13 +88,14 @@
     { "date": "2026-03-23", "chapter": "Ch.0-2", "score": 7, "total": 10, "wrong": ["Q5 OR演算", "Q6 負の数の表現", "Q7 8ビット最大値"] },
     { "date": "2026-03-24", "chapter": "Ch.3-4", "score": 9, "total": 10, "wrong": ["Q10 音声デジタル化の手順"] },
     { "date": "2026-03-25", "chapter": "Ch.5-6", "score": 9, "total": 10, "wrong": ["Q1 CPUの基本構成要素"] },
-    { "date": "2026-03-26", "chapter": "Week1テスト (Ch.0-6)", "score": 13, "total": 20, "wrong": ["Q1 CPU構成要素", "Q4 2の補数(-5)", "Q6 2進数変換(13=1101)", "Q15 キャッシュメモリの位置", "Q16 プログラムカウンタの役割", "Q17 DRAMの特徴", "Q20 内部割込みの種類"] }
+    { "date": "2026-03-26", "chapter": "Week1テスト (Ch.0-6)", "score": 13, "total": 20, "wrong": ["Q1 CPU構成要素", "Q4 2の補数(-5)", "Q6 2進数変換(13=1101)", "Q15 キャッシュメモリの位置", "Q16 プログラムカウンタの役割", "Q17 DRAMの特徴", "Q20 内部割込みの種類"] },
+    { "date": "2026-04-04", "chapter": "苦手復習 (CPU・メモリ/補数/2進数)", "score": 9, "total": 10, "wrong": ["Q4 DRAMの用途(主記憶×キャッシュ)"] }
   ],
   "subject_stats": {
     "_comment": "分野別の正答数・出題数・ミス履歴。クイズ・テスト後に更新する",
-    "2進数・n進数":         { "correct": 4, "total": 6, "missed": ["10進数13の2進数変換(正解:1101)"] },
+    "2進数・n進数":         { "correct": 6, "total": 8, "missed": [] },
     "論理演算":             { "correct": 9, "total": 11, "missed": [] },
-    "負の数・補数表現":     { "correct": 0, "total": 2, "missed": ["2の補数（ビット反転+1を忘れない）"] },
+    "負の数・補数表現":     { "correct": 3, "total": 5, "missed": [] },
     "ビット・バイト基礎":   { "correct": 1, "total": 1, "missed": [] },
     "8ビット表現範囲":      { "correct": 1, "total": 2, "missed": [] },
     "コンピュータ五大装置": { "correct": 2, "total": 2, "missed": [] },
@@ -100,7 +103,7 @@
     "浮動小数点・データ表現": { "correct": 2, "total": 2, "missed": [] },
     "文字コード":           { "correct": 2, "total": 2, "missed": [] },
     "マルチメディア(画像・音声)": { "correct": 3, "total": 4, "missed": [] },
-    "CPU・メモリ":          { "correct": 10, "total": 16, "missed": ["CPU構成要素(せえレク)", "キャッシュ=CPUと主記憶の間", "PC=次命令アドレス", "DRAM=リフレッシュ必要", "ゼロ除算=内部割込み"] },
+    "CPU・メモリ":          { "correct": 14, "total": 21, "missed": ["DRAM=主記憶に使用(キャッシュはSRAM)"] },
     "OS・ファイル管理":     { "correct": 0, "total": 0, "missed": [] },
     "データベース・SQL":    { "correct": 0, "total": 0, "missed": [] },
     "ネットワーク":         { "correct": 0, "total": 0, "missed": [] },
@@ -115,8 +118,8 @@
   "mock_exam_scores": [],
   "stats": {
     "total_sessions": 5,
-    "total_questions_answered": 50,
-    "total_correct": 38,
+    "total_questions_answered": 60,
+    "total_correct": 47,
     "chapters_completed": 3,
     "started_date": "2026-03-23"
   },
