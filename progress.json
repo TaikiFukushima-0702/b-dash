@@ -13,9 +13,9 @@
     }
   },
   "xp": {
-    "total": 270,
-    "level": 8,
-    "xp_to_next_level": 50,
+    "total": 385,
+    "level": 9,
+    "xp_to_next_level": 20,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
       { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
@@ -29,7 +29,9 @@
       { "date": "2026-03-25", "action": "Ch.5-6 読了", "xp": 30 },
       { "date": "2026-03-25", "action": "Ch.5-6 クイズ正解 9問", "xp": 45 },
       { "date": "2026-03-25", "action": "Ch.5-6 クイズ不正解 1問 (参加XP)", "xp": 1 },
-      { "date": "2026-03-26", "action": "連続学習ボーナス (4日目)", "xp": 20 }
+      { "date": "2026-03-26", "action": "連続学習ボーナス (4日目)", "xp": 20 },
+      { "date": "2026-03-26", "action": "Week1 確認テスト完了 (基本)", "xp": 50 },
+      { "date": "2026-03-26", "action": "Week1 確認テスト正解 13問", "xp": 65 }
     ]
   },
   "streak": {
@@ -58,7 +60,7 @@
       "Phase3": { "done": false, "date": null, "stamp": "👑" }
     },
     "weekly_tests": {
-      "Week1": { "done": false, "date": null, "score": null, "stamp": "📝" },
+      "Week1": { "done": true, "date": "2026-03-26", "score": "13/20", "stamp": "📝" },
       "Week2": { "done": false, "date": null, "score": null, "stamp": "📝" },
       "Week3": { "done": false, "date": null, "score": null, "stamp": "📝" },
       "Week4": { "done": false, "date": null, "score": null, "stamp": "📝" }
@@ -82,21 +84,22 @@
   "quiz_history": [
     { "date": "2026-03-23", "chapter": "Ch.0-2", "score": 7, "total": 10, "wrong": ["Q5 OR演算", "Q6 負の数の表現", "Q7 8ビット最大値"] },
     { "date": "2026-03-24", "chapter": "Ch.3-4", "score": 9, "total": 10, "wrong": ["Q10 音声デジタル化の手順"] },
-    { "date": "2026-03-25", "chapter": "Ch.5-6", "score": 9, "total": 10, "wrong": ["Q1 CPUの基本構成要素"] }
+    { "date": "2026-03-25", "chapter": "Ch.5-6", "score": 9, "total": 10, "wrong": ["Q1 CPUの基本構成要素"] },
+    { "date": "2026-03-26", "chapter": "Week1テスト (Ch.0-6)", "score": 13, "total": 20, "wrong": ["Q1 CPU構成要素", "Q4 2の補数(-5)", "Q6 2進数変換(13=1101)", "Q15 キャッシュメモリの位置", "Q16 プログラムカウンタの役割", "Q17 DRAMの特徴", "Q20 内部割込みの種類"] }
   ],
   "subject_stats": {
     "_comment": "分野別の正答数・出題数・ミス履歴。クイズ・テスト後に更新する",
-    "2進数・n進数":         { "correct": 3, "total": 4, "missed": [] },
-    "論理演算":             { "correct": 5, "total": 7, "missed": ["OR演算の結果 (1101 OR 1010 = 1111)"] },
-    "負の数・補数表現":     { "correct": 0, "total": 1, "missed": ["2の補数（負の数の表現）"] },
+    "2進数・n進数":         { "correct": 4, "total": 6, "missed": ["10進数13の2進数変換(正解:1101)"] },
+    "論理演算":             { "correct": 9, "total": 11, "missed": [] },
+    "負の数・補数表現":     { "correct": 0, "total": 2, "missed": ["2の補数（ビット反転+1を忘れない）"] },
     "ビット・バイト基礎":   { "correct": 1, "total": 1, "missed": [] },
-    "8ビット表現範囲":      { "correct": 0, "total": 1, "missed": ["符号なし8ビット最大値は255"] },
-    "コンピュータ五大装置": { "correct": 1, "total": 1, "missed": [] },
-    "シフト演算":           { "correct": 1, "total": 1, "missed": [] },
-    "浮動小数点・データ表現": { "correct": 1, "total": 1, "missed": [] },
-    "文字コード":           { "correct": 1, "total": 1, "missed": [] },
-    "マルチメディア(画像・音声)": { "correct": 1, "total": 2, "missed": ["音声デジタル化の手順（標本化→量子化→符号化）"] },
-    "CPU・メモリ":          { "correct": 9, "total": 10, "missed": ["CPUの基本構成要素（制御装置・演算装置・レジスタ・クロック）"] },
+    "8ビット表現範囲":      { "correct": 1, "total": 2, "missed": [] },
+    "コンピュータ五大装置": { "correct": 2, "total": 2, "missed": [] },
+    "シフト演算":           { "correct": 2, "total": 2, "missed": [] },
+    "浮動小数点・データ表現": { "correct": 2, "total": 2, "missed": [] },
+    "文字コード":           { "correct": 2, "total": 2, "missed": [] },
+    "マルチメディア(画像・音声)": { "correct": 3, "total": 4, "missed": [] },
+    "CPU・メモリ":          { "correct": 10, "total": 16, "missed": ["CPU構成要素(せえレク)", "キャッシュ=CPUと主記憶の間", "PC=次命令アドレス", "DRAM=リフレッシュ必要", "ゼロ除算=内部割込み"] },
     "OS・ファイル管理":     { "correct": 0, "total": 0, "missed": [] },
     "データベース・SQL":    { "correct": 0, "total": 0, "missed": [] },
     "ネットワーク":         { "correct": 0, "total": 0, "missed": [] },
@@ -107,12 +110,12 @@
     "マネジメント":         { "correct": 0, "total": 0, "missed": [] },
     "ストラテジ・経営":     { "correct": 0, "total": 0, "missed": [] }
   },
-  "weekly_scores": {},
+  "weekly_scores": { "Week1": { "date": "2026-03-26", "score": 13, "total": 20, "percentage": 65 } },
   "mock_exam_scores": [],
   "stats": {
     "total_sessions": 4,
-    "total_questions_answered": 30,
-    "total_correct": 25,
+    "total_questions_answered": 50,
+    "total_correct": 38,
     "chapters_completed": 3,
     "started_date": "2026-03-23"
   },
