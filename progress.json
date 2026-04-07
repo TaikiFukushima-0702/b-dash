@@ -13,9 +13,9 @@
     }
   },
   "xp": {
-    "total": 625,
+    "total": 675,
     "level": 12,
-    "xp_to_next_level": 95,
+    "xp_to_next_level": 45,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
       { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
@@ -43,7 +43,8 @@
       { "date": "2026-04-06", "action": "Ch.9-10 クイズ正解 8問", "xp": 40 },
       { "date": "2026-04-06", "action": "Ch.9-10 クイズ不正解 2問 (参加XP)", "xp": 2 },
       { "date": "2026-04-07", "action": "連続学習ボーナス (2日目)", "xp": 10 },
-      { "date": "2026-04-07", "action": "Ch.11 読了", "xp": 30 }
+      { "date": "2026-04-07", "action": "Ch.11 読了", "xp": 30 },
+      { "date": "2026-04-07", "action": "Ch.11 クイズ正解 10問 (パーフェクト!)", "xp": 50 }
     ]
   },
   "streak": {
@@ -85,7 +86,7 @@
     "month_legend":     { "name": "一ヶ月の伝説",       "condition": "30日連続学習達成",                "earned": false, "date": null, "icon": "🏰" },
     "perfect_quiz":     { "name": "パーフェクト！",     "condition": "確認テストで満点",               "earned": false, "date": null, "icon": "💯" },
     "algo_master":      { "name": "アルゴリズムの達人", "condition": "Phase2（科目B対策）完了",          "earned": false, "date": null, "icon": "🧮" },
-    "half_complete":    { "name": "折り返し地点",       "condition": "全チャプターの半分完了",           "earned": false, "date": null, "icon": "🏃" },
+    "half_complete":    { "name": "折り返し地点",       "condition": "全チャプターの半分完了",           "earned": true, "date": "2026-04-07", "icon": "🏃" },
     "all_chapters":     { "name": "全章制覇",           "condition": "全チャプターのスタンプ獲得",       "earned": false, "date": null, "icon": "📚" },
     "mock_exam_pass":   { "name": "模擬合格",           "condition": "模擬試験で600点以上相当",          "earned": false, "date": null, "icon": "🎓" },
     "evolution_first":  { "name": "初進化！",           "condition": "パートナーが初めて進化",           "earned": true, "date": "2026-03-24", "icon": "✨" },
@@ -100,7 +101,8 @@
     { "date": "2026-03-26", "chapter": "Week1テスト (Ch.0-6)", "score": 13, "total": 20, "wrong": ["Q1 CPU構成要素", "Q4 2の補数(-5)", "Q6 2進数変換(13=1101)", "Q15 キャッシュメモリの位置", "Q16 プログラムカウンタの役割", "Q17 DRAMの特徴", "Q20 内部割込みの種類"] },
     { "date": "2026-04-04", "chapter": "苦手復習 (CPU・メモリ/補数/2進数)", "score": 9, "total": 10, "wrong": ["Q4 DRAMの用途(主記憶×キャッシュ)"] },
     { "date": "2026-04-04", "chapter": "Ch.7-8", "score": 8, "total": 10, "wrong": ["Q8 3Dプリンタ光造形方式(SLA)", "Q10 NAS=ネットワーク接続ストレージ"] },
-    { "date": "2026-04-06", "chapter": "Ch.9-10", "score": 8, "total": 10, "wrong": ["Q5 スラッシング(ページフォルト頻発)", "Q9 差分BK=フルBK以降の変更分"] }
+    { "date": "2026-04-06", "chapter": "Ch.9-10", "score": 8, "total": 10, "wrong": ["Q5 スラッシング(ページフォルト頻発)", "Q9 差分BK=フルBK以降の変更分"] },
+    { "date": "2026-04-07", "chapter": "Ch.11", "score": 10, "total": 10, "wrong": [] }
   ],
   "subject_stats": {
     "_comment": "分野別の正答数・出題数・ミス履歴。クイズ・テスト後に更新する",
@@ -117,7 +119,7 @@
     "CPU・メモリ":          { "correct": 14, "total": 21, "missed": ["DRAM=主記憶に使用(キャッシュはSRAM)"] },
     "補助記憶・ハードウェア": { "correct": 8, "total": 10, "missed": ["3Dプリンタ光造形=SLA(FDMは熱溶解)", "NAS=ネットワーク接続の共有ストレージ"] },
     "OS・ファイル管理":     { "correct": 8, "total": 10, "missed": ["スラッシング=ページフォルト頻発で処理停滞", "差分BK=フルBK以降の変更分(増分とは違う)"] },
-    "データベース・SQL":    { "correct": 0, "total": 0, "missed": [] },
+    "データベース・SQL":    { "correct": 10, "total": 10, "missed": [] },
     "ネットワーク":         { "correct": 0, "total": 0, "missed": [] },
     "セキュリティ":         { "correct": 0, "total": 0, "missed": [] },
     "アルゴリズム":         { "correct": 0, "total": 0, "missed": [] },
@@ -130,8 +132,8 @@
   "mock_exam_scores": [],
   "stats": {
     "total_sessions": 7,
-    "total_questions_answered": 80,
-    "total_correct": 63,
+    "total_questions_answered": 90,
+    "total_correct": 73,
     "chapters_completed": 6,
     "started_date": "2026-03-23"
   },
