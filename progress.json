@@ -13,9 +13,9 @@
     }
   },
   "xp": {
-    "total": 595,
-    "level": 11,
-    "xp_to_next_level": 10,
+    "total": 625,
+    "level": 12,
+    "xp_to_next_level": 95,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
       { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
@@ -42,7 +42,8 @@
       { "date": "2026-04-06", "action": "Ch.9-10 読了", "xp": 30 },
       { "date": "2026-04-06", "action": "Ch.9-10 クイズ正解 8問", "xp": 40 },
       { "date": "2026-04-06", "action": "Ch.9-10 クイズ不正解 2問 (参加XP)", "xp": 2 },
-      { "date": "2026-04-07", "action": "連続学習ボーナス (2日目)", "xp": 10 }
+      { "date": "2026-04-07", "action": "連続学習ボーナス (2日目)", "xp": 10 },
+      { "date": "2026-04-07", "action": "Ch.11 読了", "xp": 30 }
     ]
   },
   "streak": {
@@ -57,7 +58,7 @@
       "Ch.5-6":  { "done": true, "date": "2026-03-25", "stamp": "🧠" },
       "Ch.7-8":  { "done": true, "date": "2026-04-04", "stamp": "💾" },
       "Ch.9-10": { "done": true, "date": "2026-04-06", "stamp": "🐧" },
-      "Ch.11":   { "done": false, "date": null, "stamp": "🗄️" },
+      "Ch.11":   { "done": true, "date": "2026-04-07", "stamp": "🗄️" },
       "Ch.12":   { "done": false, "date": null, "stamp": "🌐" },
       "Ch.13":   { "done": false, "date": null, "stamp": "🔒" },
       "Ch.14":   { "done": false, "date": null, "stamp": "🔧" },
@@ -131,7 +132,7 @@
     "total_sessions": 7,
     "total_questions_answered": 80,
     "total_correct": 63,
-    "chapters_completed": 5,
+    "chapters_completed": 6,
     "started_date": "2026-03-23"
   },
   "xp_rules": {
