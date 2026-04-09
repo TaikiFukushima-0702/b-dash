@@ -1,9 +1,9 @@
 {
   "partner": {
-    "name": "バイトル",
-    "stage": 2,
-    "evolution": "バイトル",
-    "ascii": "(◎▽◎)ノ",
+    "name": "メガビット",
+    "stage": 3,
+    "evolution": "メガビット",
+    "ascii": "\\(★∀★)/",
     "stages": {
       "1": { "name": "ビットン",     "ascii": "(・ω・)",     "level_range": "Lv.1-5",   "description": "生まれたばかりのデジタル生物。好奇心旺盛！" },
       "2": { "name": "バイトル",     "ascii": "(◎▽◎)ノ",   "level_range": "Lv.6-12",  "description": "知識を吸収してちょっと成長。得意技:ビット演算！" },
@@ -13,9 +13,9 @@
     }
   },
   "xp": {
-    "total": 680,
-    "level": 12,
-    "xp_to_next_level": 40,
+    "total": 795,
+    "level": 13,
+    "xp_to_next_level": 50,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
       { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
@@ -45,7 +45,9 @@
       { "date": "2026-04-07", "action": "連続学習ボーナス (2日目)", "xp": 10 },
       { "date": "2026-04-07", "action": "Ch.11 読了", "xp": 30 },
       { "date": "2026-04-07", "action": "Ch.11 クイズ正解 10問 (パーフェクト!)", "xp": 50 },
-      { "date": "2026-04-09", "action": "連続学習ボーナス (1日目・リスタート)", "xp": 5 }
+      { "date": "2026-04-09", "action": "連続学習ボーナス (1日目・リスタート)", "xp": 5 },
+      { "date": "2026-04-09", "action": "Week2 確認テスト完了 (基本)", "xp": 50 },
+      { "date": "2026-04-09", "action": "Week2 確認テスト正解 13問", "xp": 65 }
     ]
   },
   "streak": {
@@ -75,7 +77,7 @@
     },
     "weekly_tests": {
       "Week1": { "done": true, "date": "2026-03-26", "score": "13/20", "stamp": "📝" },
-      "Week2": { "done": false, "date": null, "score": null, "stamp": "📝" },
+      "Week2": { "done": true, "date": "2026-04-09", "score": "13/20", "stamp": "📝" },
       "Week3": { "done": false, "date": null, "score": null, "stamp": "📝" },
       "Week4": { "done": false, "date": null, "score": null, "stamp": "📝" }
     }
@@ -103,7 +105,8 @@
     { "date": "2026-04-04", "chapter": "苦手復習 (CPU・メモリ/補数/2進数)", "score": 9, "total": 10, "wrong": ["Q4 DRAMの用途(主記憶×キャッシュ)"] },
     { "date": "2026-04-04", "chapter": "Ch.7-8", "score": 8, "total": 10, "wrong": ["Q8 3Dプリンタ光造形方式(SLA)", "Q10 NAS=ネットワーク接続ストレージ"] },
     { "date": "2026-04-06", "chapter": "Ch.9-10", "score": 8, "total": 10, "wrong": ["Q5 スラッシング(ページフォルト頻発)", "Q9 差分BK=フルBK以降の変更分"] },
-    { "date": "2026-04-07", "chapter": "Ch.11", "score": 10, "total": 10, "wrong": [] }
+    { "date": "2026-04-07", "chapter": "Ch.11", "score": 10, "total": 10, "wrong": [] },
+    { "date": "2026-04-09", "chapter": "Week2テスト (Ch.7-11)", "score": 13, "total": 20, "wrong": ["Q3 SLA光造形(SLSと混同)", "Q6 SSD衝撃=可動部分なし", "Q8 差分BK(また増分と混同)", "Q9 FCFS=到着順", "Q12 絶対パスは/から始まる", "Q13 LRU=最近未使用(LFUは頻度)", "Q14 第3正規形=推移的関数従属排除"] }
   ],
   "subject_stats": {
     "_comment": "分野別の正答数・出題数・ミス履歴。クイズ・テスト後に更新する",
@@ -117,10 +120,10 @@
     "浮動小数点・データ表現": { "correct": 2, "total": 2, "missed": [] },
     "文字コード":           { "correct": 2, "total": 2, "missed": [] },
     "マルチメディア(画像・音声)": { "correct": 3, "total": 4, "missed": [] },
-    "CPU・メモリ":          { "correct": 14, "total": 21, "missed": ["DRAM=主記憶に使用(キャッシュはSRAM)"] },
-    "補助記憶・ハードウェア": { "correct": 8, "total": 10, "missed": ["3Dプリンタ光造形=SLA(FDMは熱溶解)", "NAS=ネットワーク接続の共有ストレージ"] },
-    "OS・ファイル管理":     { "correct": 8, "total": 10, "missed": ["スラッシング=ページフォルト頻発で処理停滞", "差分BK=フルBK以降の変更分(増分とは違う)"] },
-    "データベース・SQL":    { "correct": 10, "total": 10, "missed": [] },
+    "CPU・メモリ":          { "correct": 15, "total": 22, "missed": [] },
+    "補助記憶・ハードウェア": { "correct": 11, "total": 15, "missed": ["SLA=光造形(SLSは焼結)", "SSD衝撃耐性=可動部分なし"] },
+    "OS・ファイル管理":     { "correct": 11, "total": 17, "missed": ["差分BK=フルBK以降の変更分", "FCFS=到着順(RRは時分割)", "絶対パスは/始まり", "LRU=最近未使用(LFU=頻度少)"] },
+    "データベース・SQL":    { "correct": 16, "total": 17, "missed": ["第3正規形=推移的関数従属排除(第2=部分)"] },
     "ネットワーク":         { "correct": 0, "total": 0, "missed": [] },
     "セキュリティ":         { "correct": 0, "total": 0, "missed": [] },
     "アルゴリズム":         { "correct": 0, "total": 0, "missed": [] },
@@ -129,12 +132,12 @@
     "マネジメント":         { "correct": 0, "total": 0, "missed": [] },
     "ストラテジ・経営":     { "correct": 0, "total": 0, "missed": [] }
   },
-  "weekly_scores": { "Week1": { "date": "2026-03-26", "score": 13, "total": 20, "percentage": 65 } },
+  "weekly_scores": { "Week1": { "date": "2026-03-26", "score": 13, "total": 20, "percentage": 65 }, "Week2": { "date": "2026-04-09", "score": 13, "total": 20, "percentage": 65 } },
   "mock_exam_scores": [],
   "stats": {
     "total_sessions": 8,
-    "total_questions_answered": 90,
-    "total_correct": 73,
+    "total_questions_answered": 110,
+    "total_correct": 86,
     "chapters_completed": 6,
     "started_date": "2026-03-23"
   },
