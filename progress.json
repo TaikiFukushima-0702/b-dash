@@ -13,9 +13,9 @@
     }
   },
   "xp": {
-    "total": 675,
+    "total": 680,
     "level": 12,
-    "xp_to_next_level": 45,
+    "xp_to_next_level": 40,
     "history": [
       { "date": "2026-03-23", "action": "連続学習ボーナス (1日目)", "xp": 5 },
       { "date": "2026-03-23", "action": "Ch.0-2 読了", "xp": 30 },
@@ -44,13 +44,14 @@
       { "date": "2026-04-06", "action": "Ch.9-10 クイズ不正解 2問 (参加XP)", "xp": 2 },
       { "date": "2026-04-07", "action": "連続学習ボーナス (2日目)", "xp": 10 },
       { "date": "2026-04-07", "action": "Ch.11 読了", "xp": 30 },
-      { "date": "2026-04-07", "action": "Ch.11 クイズ正解 10問 (パーフェクト!)", "xp": 50 }
+      { "date": "2026-04-07", "action": "Ch.11 クイズ正解 10問 (パーフェクト!)", "xp": 50 },
+      { "date": "2026-04-09", "action": "連続学習ボーナス (1日目・リスタート)", "xp": 5 }
     ]
   },
   "streak": {
-    "current": 2,
+    "current": 1,
     "max": 4,
-    "last_study_date": "2026-04-07"
+    "last_study_date": "2026-04-09"
   },
   "stamps": {
     "chapters": {
@@ -131,7 +132,7 @@
   "weekly_scores": { "Week1": { "date": "2026-03-26", "score": 13, "total": 20, "percentage": 65 } },
   "mock_exam_scores": [],
   "stats": {
-    "total_sessions": 7,
+    "total_sessions": 8,
     "total_questions_answered": 90,
     "total_correct": 73,
     "chapters_completed": 6,
