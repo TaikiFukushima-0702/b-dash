@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>論理脳トレーナー — 飽きずに続く論理的思考の習慣化アプリ</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">L</div>
+      <div>
+        <h1>論理脳トレーナー</h1>
+        <p class="tagline">毎日5分。飽きない5種のトレーニングで論理的思考を習慣化。</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="stat-label">レベル</span><span class="stat-value" id="stat-level">1</span></div>
+      <div class="stat"><span class="stat-label">XP</span><span class="stat-value" id="stat-xp">0</span></div>
+      <div class="stat"><span class="stat-label">連続日数</span><span class="stat-value" id="stat-streak">0</span><span class="stat-suffix">日</span></div>
+      <div class="stat"><span class="stat-label">解答数</span><span class="stat-value" id="stat-solved">0</span></div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="dashboard">ダッシュボード</button>
+    <button class="tab" data-tab="train">トレーニング</button>
+    <button class="tab" data-tab="program">30日プログラム</button>
+    <button class="tab" data-tab="resources">学習リソース</button>
+    <button class="tab" data-tab="log">学習ログ</button>
+  </nav>
+
+  <main>
+    <!-- Dashboard -->
+    <section class="view active" id="view-dashboard">
+      <div class="card hero">
+        <div>
+          <h2>今日の課題</h2>
+          <p id="today-message">毎日少しずつでOK。今日の3問にチャレンジしましょう。</p>
+          <div class="today-progress">
+            <div class="bar"><div class="bar-fill" id="today-bar"></div></div>
+            <span id="today-count">0 / 3</span>
+          </div>
+          <button class="btn primary" id="start-today">今日のトレーニングを始める</button>
+        </div>
+        <div class="streak-badge">
+          <div class="streak-num" id="streak-num">0</div>
+          <div class="streak-label">日連続</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>5種のトレーニング</h3>
+          <p class="muted">飽きないようにジャンルがローテーションされます。</p>
+          <ul class="type-list" id="type-list"></ul>
+        </div>
+        <div class="card">
+          <h3>今のあなたの強み・弱み</h3>
+          <ul class="skill-list" id="skill-list"></ul>
+        </div>
+        <div class="card">
+          <h3>おすすめの一冊</h3>
+          <div id="featured-resource"></div>
+          <button class="btn ghost" data-tab-link="resources">すべてのリソースを見る</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Training -->
+    <section class="view" id="view-train">
+      <div class="card">
+        <div class="train-header">
+          <h2>トレーニング</h2>
+          <div class="filter">
+            <label>ジャンル</label>
+            <select id="filter-type">
+              <option value="random">🎲 ランダム（おすすめ）</option>
+              <option value="syllogism">三段論法</option>
+              <option value="knights">嘘つき・正直者パズル</option>
+              <option value="sequence">数列・パターン</option>
+              <option value="fermi">フェルミ推定</option>
+              <option value="critical">クリティカルシンキング</option>
+            </select>
+            <label>難易度</label>
+            <select id="filter-level">
+              <option value="any">すべて</option>
+              <option value="1">★ 入門</option>
+              <option value="2">★★ 基礎</option>
+              <option value="3">★★★ 応用</option>
+            </select>
+          </div>
+        </div>
+        <div id="problem-area">
+          <button class="btn primary" id="start-train">問題を出す</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 30-day program -->
+    <section class="view" id="view-program">
+      <div class="card">
+        <h2>30日プログラム</h2>
+        <p class="muted">毎日テーマが決まっているので「今日何をやろう？」と迷いません。チェックを入れて進めましょう。</p>
+        <div class="program-grid" id="program-grid"></div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="view" id="view-resources">
+      <div class="card">
+        <h2>学習リソース集</h2>
+        <p class="muted">論理的思考を学ぶための、書籍・サイト・YouTubeを厳選。</p>
+        <div class="filter">
+          <label>カテゴリ</label>
+          <select id="filter-resource">
+            <option value="all">すべて</option>
+            <option value="book">書籍</option>
+            <option value="site">Webサイト・記事</option>
+            <option value="youtube">YouTube</option>
+          </select>
+        </div>
+        <div class="resource-grid" id="resource-grid"></div>
+      </div>
+    </section>
+
+    <!-- Log -->
+    <section class="view" id="view-log">
+      <div class="card">
+        <h2>学習ログ</h2>
+        <div class="log-stats" id="log-stats"></div>
+        <h3>直近の解答履歴</h3>
+        <ul class="history" id="history"></ul>
+        <div class="actions">
+          <button class="btn ghost" id="export-data">学習データをエクスポート</button>
+          <button class="btn danger" id="reset-data">データを全リセット</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>論理脳トレーナー · ブラウザのlocalStorageに進捗が保存されます。</small>
+  </footer>
+
+  <script src="data/problems.js"></script>
+  <script src="data/resources.js"></script>
+  <script src="data/program.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
