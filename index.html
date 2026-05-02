@@ -20,6 +20,7 @@
       <div class="stat"><span class="stat-label">XP</span><span class="stat-value" id="stat-xp">0</span></div>
       <div class="stat"><span class="stat-label">連続日数</span><span class="stat-value" id="stat-streak">0</span><span class="stat-suffix">日</span></div>
       <div class="stat"><span class="stat-label">解答数</span><span class="stat-value" id="stat-solved">0</span></div>
+      <button class="settings-btn" id="open-settings" title="AI連携・設定">⚙️</button>
     </div>
   </header>
 
@@ -27,6 +28,7 @@
     <button class="tab active" data-tab="dashboard">ダッシュボード</button>
     <button class="tab" data-tab="train">トレーニング</button>
     <button class="tab" data-tab="program">30日プログラム</button>
+    <button class="tab" data-tab="achievements">実績</button>
     <button class="tab" data-tab="resources">学習リソース</button>
     <button class="tab" data-tab="log">学習ログ</button>
   </nav>
@@ -34,6 +36,10 @@
   <main>
     <!-- Dashboard -->
     <section class="view active" id="view-dashboard">
+      <div class="card character-card" id="character-card">
+        <!-- character rendered here by JS -->
+      </div>
+
       <div class="card hero">
         <div>
           <h2>今日の課題</h2>
@@ -93,7 +99,10 @@
           </div>
         </div>
         <div id="problem-area">
-          <button class="btn primary" id="start-train">問題を出す</button>
+          <div class="train-actions">
+            <button class="btn primary" id="start-train">問題を出す</button>
+            <button class="btn ghost ai-only" id="ai-generate" hidden>🤖 AIに新しい問題を作ってもらう</button>
+          </div>
         </div>
       </div>
     </section>
@@ -104,6 +113,21 @@
         <h2>30日プログラム</h2>
         <p class="muted">毎日テーマが決まっているので「今日何をやろう？」と迷いません。チェックを入れて進めましょう。</p>
         <div class="program-grid" id="program-grid"></div>
+      </div>
+    </section>
+
+    <!-- Achievements & per-problem status -->
+    <section class="view" id="view-achievements">
+      <div class="card">
+        <h2>実績バッジ</h2>
+        <p class="muted">学習を続けると自動でアンロックされます。<span id="ach-progress"></span></p>
+        <div class="achievements" id="achievements-grid"></div>
+      </div>
+
+      <div class="card">
+        <h2>各課題の達成ステータス</h2>
+        <p class="muted">問題ごとの達成状況。○=正解、×=要復習、—=未挑戦。クリックでもう一度挑戦。</p>
+        <div class="problem-status" id="problem-status"></div>
       </div>
     </section>
 
@@ -140,6 +164,49 @@
     </section>
   </main>
 
+  <!-- Settings modal: Claude API integration -->
+  <div class="modal" id="settings-modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>⚙️ AI連携 / 設定</h2>
+        <button class="icon-btn" data-close-modal aria-label="閉じる">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="muted">
+          Anthropic の Claude APIキーを設定すると、解説の深掘りや新しい問題の自動生成がアプリ内で使えるようになります。
+          APIキーは <strong>あなたのブラウザのlocalStorage</strong> にのみ保存され、Anthropic以外には送信されません。
+        </p>
+        <label class="form-label">
+          Anthropic API キー
+          <input type="password" id="api-key" placeholder="sk-ant-..." autocomplete="off" />
+          <small class="muted">取得先: <code>console.anthropic.com</code></small>
+        </label>
+        <label class="form-label">
+          モデル
+          <select id="api-model">
+            <option value="claude-opus-4-7">Claude Opus 4.7（最高性能・推奨）</option>
+            <option value="claude-sonnet-4-6">Claude Sonnet 4.6（速度と性能のバランス）</option>
+            <option value="claude-haiku-4-5">Claude Haiku 4.5（高速・低コスト）</option>
+          </select>
+        </label>
+        <div class="modal-actions">
+          <button class="btn primary" id="save-settings">保存</button>
+          <button class="btn ghost" id="test-settings">接続テスト</button>
+          <button class="btn danger" id="clear-settings">APIキーを削除</button>
+        </div>
+        <div id="settings-status" class="muted"></div>
+        <hr />
+        <h3>データの取り扱い</h3>
+        <ul class="muted small">
+          <li>解答履歴・XP・連続日数などは <code>localStorage</code> に保存(ブラウザ内)</li>
+          <li>APIキー設定時のみ、解説生成のために問題文と選択した答えがAnthropicへ送信されます</li>
+          <li>APIキーは送信先(Anthropic)以外には絶対に渡しません</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <small>論理脳トレーナー · ブラウザのlocalStorageに進捗が保存されます。</small>
   </footer>
@@ -147,6 +214,8 @@
   <script src="data/problems.js"></script>
   <script src="data/resources.js"></script>
   <script src="data/program.js"></script>
+  <script src="data/character.js"></script>
+  <script src="data/achievements.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
