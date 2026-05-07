@@ -1,2 +1,32 @@
-# b-dash
-b→dash Customer Success Tool
+# Study Quest 〜まなびそだてるたまご〜
+
+勉強・読書・運動などの自己研鑽を入力すると、キャラクターが経験値とゴールドを獲得し、
+レベルアップ・進化していく**たまごっち風の学習育成ゲーム**です。
+
+## 特徴
+
+- 📚 活動カテゴリ別のXPレート (勉強 / 読書 / 運動 / 語学 / コーディング / 執筆)
+- 🥚 → 🐣 → 🐤 → 🦊 → 🦉 → 🐲 の6段階進化
+- 🪙 ゴールドを貯めて道具屋でアイテムを購入 (XPブースト・装備・装飾)
+- 🎯 中・長期目標を立てて達成すると XP/G ボーナス
+- 💾 すべて localStorage に保存 (バックエンド不要)
+
+## 将来の拡張予定
+
+- 🔐 ログイン機能
+- 🤝 友だちと進捗を比較できるランキング
+
+## 開発
+
+```bash
+npm install
+npm run dev
+```
+
+ブラウザで http://localhost:3000 を開いてください。
+
+## 技術スタック
+
+- Next.js 14 (App Router) + TypeScript
+- Tailwind CSS
+- Zustand (with persist middleware)

@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Press+Start+2P&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+  background: linear-gradient(180deg, #fff7e6 0%, #ffe8f3 50%, #e0f3ff 100%);
+  background-attachment: fixed;
+  font-family: "Mochiy Pop One", system-ui, sans-serif;
+  color: #2b2b3d;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Polka dot decoration */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.55) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  z-index: 0;
+}
+
+/* Make app content stack above the dot pattern */
+main,
+header,
+nav {
+  position: relative;
+  z-index: 1;
+}
