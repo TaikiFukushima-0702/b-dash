@@ -14,7 +14,7 @@ export default function CharacterCard({ character }: { character: CharacterState
     <Card className="overflow-hidden">
       <div className="flex items-center gap-4">
         <div className="shrink-0 animate-float">
-          <CharacterArt stage={character.stage} size={120} />
+          <CharacterArt stage={character.stage} size={120} uid="card" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">

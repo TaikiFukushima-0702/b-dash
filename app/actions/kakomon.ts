@@ -69,6 +69,7 @@ export async function recordKakomonSession(
       message: `正答率 ${acc}%・${progress.xp} XP を獲得！`,
       xp: progress.xp,
       level: progress.level,
+      stage: progress.stage,
       evolved: progress.evolved,
       leveledUp: progress.leveledUp,
       stageName: progress.stageName,

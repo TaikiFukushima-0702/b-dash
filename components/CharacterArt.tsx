@@ -1,29 +1,46 @@
 // キャラのプレースホルダーアート（インライン SVG・4段階）。
-// 本番アートが用意できたら public/characters/stage-N.png を next/image で差し替える。
+// 段階が上がるほど「大きく・装飾が増え・色が深まる」よう描き分け、進化を感じさせる。
+// 本番のラスターアートが用意できたら public/characters/stage-N.png を next/image で差し替える。
 // （lib/character.ts の imageForStage がそのパスを返す）
+//
+// 同一ページに複数描画してもグラデーション id が衝突しないよう uid を受け取る。
 
-const PALETTES: Record<number, { body: string; accent: string; belly: string }> = {
-  1: { body: "#9be7c4", accent: "#34d399", belly: "#e9fff5" },
-  2: { body: "#8bd0ff", accent: "#3b82f6", belly: "#eaf5ff" },
-  3: { body: "#b3a4ff", accent: "#6d5efc", belly: "#f0edff" },
-  4: { body: "#ffcf6b", accent: "#ff9d2e", belly: "#fff4dd" },
+interface Palette {
+  bg1: string;
+  bg2: string;
+  body1: string;
+  body2: string;
+  accent: string;
+  belly: string;
+}
+
+const PALETTES: Record<number, Palette> = {
+  1: { bg1: "#eafff5", bg2: "#c9f7e3", body1: "#a7ecc8", body2: "#5fd3a0", accent: "#2bb784", belly: "#f3fffb" },
+  2: { bg1: "#eaf5ff", bg2: "#cfe6ff", body1: "#9fd2ff", body2: "#5aa6f5", accent: "#2f7fe0", belly: "#f2f9ff" },
+  3: { bg1: "#f1edff", bg2: "#ded4ff", body1: "#bda9ff", body2: "#7d63f0", accent: "#5a3fd6", belly: "#f6f3ff" },
+  4: { bg1: "#fff6e0", bg2: "#ffe6ad", body1: "#ffd474", body2: "#ff9d2e", accent: "#e0760a", belly: "#fff8e9" },
 };
 
 export default function CharacterArt({
   stage,
   size = 160,
+  uid,
   className = "",
 }: {
   stage: number;
   size?: number;
+  uid?: string;
   className?: string;
 }) {
   const s = Math.min(Math.max(1, stage), 4);
   const c = PALETTES[s];
-  // ステージが上がるほど大きく・装飾が増える。
+  const id = `ca-${uid ?? s}`;
+  const grow = (s - 1) * 4; // 段階ごとに少しずつ大きく
+
   const ears = s >= 2;
-  const crown = s >= 4;
   const wings = s >= 3;
+  const crown = s >= 4;
+  const aura = s >= 4;
 
   return (
     <svg
@@ -34,39 +51,101 @@ export default function CharacterArt({
       role="img"
       aria-label={`キャラクター 進化段階 ${s}`}
     >
+      <defs>
+        <radialGradient id={`${id}-bg`} cx="50%" cy="42%" r="60%">
+          <stop offset="0%" stopColor={c.bg1} />
+          <stop offset="100%" stopColor={c.bg2} />
+        </radialGradient>
+        <linearGradient id={`${id}-body`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={c.body1} />
+          <stop offset="100%" stopColor={c.body2} />
+        </linearGradient>
+      </defs>
+
+      {/* 背景の丸 */}
+      <circle cx="100" cy="100" r="96" fill={`url(#${id}-bg)`} />
+
+      {aura && (
+        <g>
+          {[20, 70, 120, 170, 150, 40].map((x, i) => (
+            <circle key={i} cx={x} cy={30 + (i % 3) * 60} r={i % 2 ? 3 : 2} fill="#ffe9a8" />
+          ))}
+        </g>
+      )}
+
       {wings && (
-        <g fill={c.accent} opacity={0.85}>
-          <path d="M45 110 Q10 90 20 130 Q35 135 55 125 Z" />
-          <path d="M155 110 Q190 90 180 130 Q165 135 145 125 Z" />
+        <g fill={c.accent} opacity={0.9}>
+          <path d="M52 112 Q14 86 18 130 Q34 138 60 126 Z" />
+          <path d="M148 112 Q186 86 182 130 Q166 138 140 126 Z" />
         </g>
       )}
+
+      {/* しっぽ（段階3以上） */}
+      {s >= 3 && (
+        <path
+          d="M150 140 Q178 150 176 116 Q170 132 150 128 Z"
+          fill={`url(#${id}-body)`}
+        />
+      )}
+
       {/* 体 */}
-      <ellipse cx="100" cy="120" rx={50 + s * 4} ry={48 + s * 3} fill={c.body} />
-      <ellipse cx="100" cy="132" rx={30 + s * 2} ry={28 + s * 2} fill={c.belly} />
+      <ellipse cx="100" cy="126" rx={46 + grow} ry={44 + grow * 0.8} fill={`url(#${id}-body)`} />
+      <ellipse cx="100" cy="136" rx={26 + grow * 0.5} ry={24 + grow * 0.5} fill={c.belly} />
+
       {/* 頭 */}
-      <circle cx="100" cy="78" r={36 + s * 2} fill={c.body} />
-      {ears && (
-        <g fill={c.body}>
-          <path d="M74 52 L64 22 L92 46 Z" />
-          <path d="M126 52 L136 22 L108 46 Z" />
+      <circle cx="100" cy="80" r={34 + grow * 0.7} fill={`url(#${id}-body)`} />
+
+      {ears &&
+        (s >= 3 ? (
+          // とがった耳
+          <g fill={`url(#${id}-body)`}>
+            <path d="M72 54 L60 18 L92 46 Z" />
+            <path d="M128 54 L140 18 L108 46 Z" />
+            <path d="M76 50 L70 30 L88 46 Z" fill={c.accent} opacity={0.5} />
+            <path d="M124 50 L130 30 L112 46 Z" fill={c.accent} opacity={0.5} />
+          </g>
+        ) : (
+          // 丸い耳
+          <g fill={`url(#${id}-body)`}>
+            <circle cx="74" cy="52" r="12" />
+            <circle cx="126" cy="52" r="12" />
+          </g>
+        ))}
+
+      {crown && (
+        <path
+          d="M74 40 L86 20 L100 36 L114 20 L126 40 Z"
+          fill="#ffd54a"
+          stroke="#e0a800"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+      )}
+
+      {/* 顔 */}
+      <circle cx="86" cy="78" r={s >= 3 ? 6 : 5.5} fill="#22252e" />
+      <circle cx="114" cy="78" r={s >= 3 ? 6 : 5.5} fill="#22252e" />
+      <circle cx="88" cy="75.5" r="2" fill="#fff" />
+      <circle cx="116" cy="75.5" r="2" fill="#fff" />
+      <circle cx="73" cy="90" r="5" fill={c.accent} opacity={0.45} />
+      <circle cx="127" cy="90" r="5" fill={c.accent} opacity={0.45} />
+      {s >= 3 ? (
+        <path d="M90 92 Q100 102 110 92" stroke="#22252e" strokeWidth="3" fill="none" strokeLinecap="round" />
+      ) : (
+        <path d="M94 92 Q100 98 106 92" stroke="#22252e" strokeWidth="3" fill="none" strokeLinecap="round" />
+      )}
+
+      {/* 足 */}
+      <ellipse cx="84" cy={172} rx="13" ry="8" fill={c.accent} />
+      <ellipse cx="116" cy={172} rx="13" ry="8" fill={c.accent} />
+
+      {/* 段階1の小さな芽 */}
+      {s === 1 && (
+        <g>
+          <path d="M100 50 Q96 36 104 32 Q104 44 100 50 Z" fill={c.accent} />
+          <path d="M100 50 Q104 38 96 34 Q96 46 100 50 Z" fill="#7fe0b3" />
         </g>
       )}
-      {crown && (
-        <path d="M76 40 L88 22 L100 38 L112 22 L124 40 Z" fill="#ffd54a" stroke="#e0a800" strokeWidth="2" />
-      )}
-      {/* 目 */}
-      <circle cx="86" cy="76" r="6" fill="#22252e" />
-      <circle cx="114" cy="76" r="6" fill="#22252e" />
-      <circle cx="88" cy="74" r="2" fill="#fff" />
-      <circle cx="116" cy="74" r="2" fill="#fff" />
-      {/* ほっぺ */}
-      <circle cx="74" cy="90" r="5" fill={c.accent} opacity={0.5} />
-      <circle cx="126" cy="90" r="5" fill={c.accent} opacity={0.5} />
-      {/* 口 */}
-      <path d="M92 92 Q100 100 108 92" stroke="#22252e" strokeWidth="3" fill="none" strokeLinecap="round" />
-      {/* 足 */}
-      <ellipse cx="82" cy="170" rx="14" ry="9" fill={c.accent} />
-      <ellipse cx="118" cy="170" rx="14" ry="9" fill={c.accent} />
     </svg>
   );
 }

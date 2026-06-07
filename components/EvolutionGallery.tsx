@@ -14,7 +14,7 @@ export default function EvolutionGallery({ currentStage }: { currentStage: numbe
             className={`flex flex-col items-center text-center ${isCurrent ? "ring-2 ring-[var(--primary)]" : ""}`}
           >
             <div className={unlocked ? "" : "opacity-30 grayscale"}>
-              <CharacterArt stage={s.stage} size={110} />
+              <CharacterArt stage={s.stage} size={110} uid={`gal${s.stage}`} />
             </div>
             <p className="mt-1 text-sm font-bold">{unlocked ? s.name : "？？？"}</p>
             <p className="text-[11px] text-[var(--muted)]">Lv.{s.minLevel} で進化</p>

@@ -11,6 +11,7 @@ export interface ActionResult {
   message: string;
   xp?: number;
   level?: number;
+  stage?: number;
   evolved?: boolean;
   leveledUp?: boolean;
   stageName?: string;
@@ -69,6 +70,7 @@ export async function logStudy(_prev: ActionResult | undefined, formData: FormDa
       message: `${progress.xp} XP を獲得！`,
       xp: progress.xp,
       level: progress.level,
+      stage: progress.stage,
       evolved: progress.evolved,
       leveledUp: progress.leveledUp,
       stageName: progress.stageName,

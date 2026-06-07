@@ -6,6 +6,7 @@ import type { ActionResult } from "@/app/actions/study";
 import CategoryPicker from "./CategoryPicker";
 import SubmitButton, { fieldClass, labelClass } from "./SubmitButton";
 import ResultBanner from "./ResultBanner";
+import CelebrationOverlay from "./CelebrationOverlay";
 import { Card } from "./ui";
 
 const KAKOMON_URL = "https://www.fe-siken.com/fekakomon.php";
@@ -37,6 +38,7 @@ export default function KakomonForm({ today }: { today: string }) {
       </Card>
 
       <form action={formAction} className="space-y-4">
+        <CelebrationOverlay result={state} />
         <ResultBanner result={state} />
         <Card className="space-y-4">
           <div className="grid grid-cols-3 gap-3">

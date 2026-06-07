@@ -6,6 +6,7 @@ import { STUDY_SOURCES } from "@/lib/fe-categories";
 import CategoryPicker from "./CategoryPicker";
 import SubmitButton, { fieldClass, labelClass } from "./SubmitButton";
 import ResultBanner from "./ResultBanner";
+import CelebrationOverlay from "./CelebrationOverlay";
 import { Card } from "./ui";
 
 export default function StudyLogForm({ today }: { today: string }) {
@@ -13,6 +14,7 @@ export default function StudyLogForm({ today }: { today: string }) {
 
   return (
     <form action={formAction} className="space-y-4">
+      <CelebrationOverlay result={state} />
       <ResultBanner result={state} />
       <Card className="space-y-4">
         <div className="grid grid-cols-2 gap-3">

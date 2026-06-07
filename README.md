@@ -29,8 +29,23 @@
 ### 1. Notion を準備する
 
 1. [Notion Integrations](https://www.notion.so/my-integrations) で内部インテグレーションを作成し、**Internal Integration Token** を取得（`NOTION_TOKEN`）。
-2. 下記 6 つのデータベースを作成し、各 DB の右上「…」→「コネクト」から**作成したインテグレーションを接続**（最頻のハマりどころ）。
-3. 各 DB の URL（`https://www.notion.so/xxxx…?v=…` の `xxxx…` 32 桁）を環境変数に設定。
+2. DB を置きたい**親ページ**を 1 つ作り、右上「…」→「コネクト」で**作成したインテグレーションを接続**。
+
+#### 🚀 かんたんセットアップ（推奨）
+
+6 つの DB をスキーマごと自動作成するスクリプトを同梱しています。手作業のミスを防げます。
+
+```bash
+npm install
+NOTION_TOKEN=secret_xxx npm run setup:notion -- <親ページID>
+```
+
+実行後に出力される `NOTION_DB_*` の行を `.env.local` / Vercel にそのまま貼り付けてください。
+（親ページ ID は親ページ URL 末尾の 32 桁。Integration への共有を忘れずに）
+
+#### 手動で作る場合
+
+各 DB の URL（`https://www.notion.so/xxxx…?v=…` の `xxxx…` 32 桁）を環境変数に設定し、下表どおりの列を作成します。
 
 #### データベースと列（プロパティ名は完全一致させること）
 
