@@ -1,0 +1,44 @@
+name: Notion DBセットアップ（ボタンで実行）
+
+# 使い方:
+# 1) リポジトリの Settings → Secrets and variables → Actions → New repository secret
+#    Name: NOTION_TOKEN / Value: あなたの Notion シークレット を登録
+# 2) Actions タブ → 左の「Notion DBセットアップ（ボタンで実行）」→ Run workflow
+#    親ページID（NotionページURLの32桁）を入力して実行
+# 3) 実行後、ジョブの「Summary」に NOTION_DB_* が表示されるのでコピーして Vercel に貼り付け
+
+on:
+  workflow_dispatch:
+    inputs:
+      parent_page_id:
+        description: "親ページID（NotionページURLの末尾32桁）"
+        required: true
+        type: string
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+      - name: Notion に6つのDBを作成
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: |
+          if [ -z "$NOTION_TOKEN" ]; then
+            echo "::error::NOTION_TOKEN が未登録です。Settings → Secrets で登録してください。"
+            exit 1
+          fi
+          node scripts/setup-notion.mjs "${{ inputs.parent_page_id }}" | tee /tmp/out.txt
+          {
+            echo "## ✅ コピー用：Vercel に貼り付ける環境変数"
+            echo ""
+            echo '```'
+            grep -E '^NOTION_DB_' /tmp/out.txt || echo "(DB行が見つかりませんでした。ログを確認してください)"
+            echo '```'
+            echo ""
+            echo "※ NOTION_TOKEN・APP_PASSPHRASE・AUTH_SECRET も Vercel に設定してください。"
+          } >> "$GITHUB_STEP_SUMMARY"
