@@ -28,6 +28,15 @@ npm run build    # 型チェック込みビルド（コミット前に通すこ�
 npm run lint     # ESLint
 ```
 
+## 同梱の MCP サーバー（`mcp/`）
+- `mcp/moneyforward-me` — マネーフォワード ME の家計簿 CSV を Claude から読む MCP サーバー。
+  Next アプリとは独立した Node パッケージで、ルートの `tsconfig.json` / `eslint.config.mjs` から `mcp/**` を除外している。
+- 変更したら `cd mcp/moneyforward-me && npm test`（ビルド込み）を通すこと。
+- 計算ロジックは本体と同じ方針で純関数に集約（`analyze.ts` `assets.ts` `budget.ts` `period.ts`）、
+  MCP のプロトコル層は `index.ts` のみ。
+- ⚖️ **MF へのログイン・スクレイピングは行わない。** ユーザーが手動でエクスポートし、
+  ローカルフォルダ（`MF_DATA_DIR`）に置いた CSV だけを読む。認証情報は扱わない。
+
 ## Claude による学習サポートの運用（Notion MCP）
 アプリと Claude は同じ Notion DB を参照する。代表的な依頼:
 - 週次レビュー: 「直近 1 週間の **Study Log** と **Category Stats** を読み、弱点・来週の重点・

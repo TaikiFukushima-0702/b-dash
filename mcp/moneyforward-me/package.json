@@ -1,0 +1,31 @@
+{
+  "name": "moneyforward-me-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "マネーフォワード ME からエクスポートした CSV を Claude に読ませる MCP サーバー",
+  "type": "module",
+  "bin": {
+    "moneyforward-me-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test \"test/*.test.mjs\"",
+    "prepare": "npm run build"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.2",
+    "typescript": "^5.9.3"
+  }
+}

@@ -154,6 +154,22 @@ npm run dev      # http://localhost:3000
 
 ---
 
+## 同梱の MCP サーバー
+
+`mcp/` 配下には、Claude に別のデータ源をつなぐための MCP サーバーを置いています（本体アプリとは独立した Node パッケージ）。
+
+| ディレクトリ | 内容 |
+| --- | --- |
+| [`mcp/moneyforward-me`](mcp/moneyforward-me/README.md) | マネーフォワード ME からエクスポートした家計簿 CSV を読み、支出の集計・明細検索・資産の把握・予算チェックを行う |
+
+```bash
+cd mcp/moneyforward-me
+npm install   # postinstall でビルド
+npm test
+```
+
+---
+
 ## キャラクター画像
 
 現状はプレースホルダーの **インライン SVG**（`components/CharacterArt.tsx`）で 4 段階を描画しています。本番アートに差し替える手順は `public/characters/README.md` を参照してください（`lib/character.ts` の `imageForStage` が `/characters/stage-N.png` を返します）。

@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# mcp servers (独立した Node パッケージ)
+mcp/**/node_modules
+mcp/**/dist
+mcp/**/*.tsbuildinfo
+
+# ローカルに置く家計簿データ（コミットしない）
+mcp/**/budget.json

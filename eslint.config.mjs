@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 独立した Node パッケージ（mcp/moneyforward-me）は Next の設定の対象外
+    "mcp/**",
   ]),
 ]);
 
